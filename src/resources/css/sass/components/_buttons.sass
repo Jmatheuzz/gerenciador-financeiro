@@ -1,0 +1,29 @@
+@use '../_mixins'
+@use '../_variables'
+
+.create
+  width: 50%
+  margin: 2rem 5rem
+  text-align: left
+  display: flex
+  .button-new-expense
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 1rem
+    width: 22%
+    height: 5vh
+    background-color: variables.$third-color
+    color: variables.$text-color-light
+    text-decoration: none
+  .button-new-win
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 1rem
+    width: 22%
+    height: 5vh
+    margin-left: 1rem
+    background-color: variables.$second-color
+    color: variables.$text-color-light
+    text-decoration: none

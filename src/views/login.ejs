@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <%- include('./components/header.ejs') %>
+
+  <main>
+    <form method="post" action="http://localhost:5000/auth/login" class="form">
+      <div class="field">
+        <label>
+          Email
+        </label>
+        <input type="email" name="email">
+      </div>
+
+      <div class="field">
+        <label>
+          Senha
+        </label>
+        <input type="password" name="password">
+        <span class="show-password">
+          <i class="fa-sharp fa-solid fa-eye-slash"></i>
+        </span>
+      </div>
+
+      <button type="submit">
+        Entrar
+      </button>
+    </form>
+  </main>
+
+
+</body>
+<script>
+  const showPass = document.querySelector('.show-password')
+  showPass.addEventListener('click', (e)=> {
+    if (e.target.classList.contains('fa-eye-slash')) {
+      e.target.classList.remove('fa-eye-slash')
+      e.target.classList.add('fa-eye')
+      e.target.style.marginLeft = '0.07rem'
+      e.target.parentElement.previousSibling.previousSibling.type = 'text'
+    }else {
+      e.target.classList.remove('fa-eye')
+      e.target.classList.add('fa-eye-slash')
+      e.target.style.marginLeft = '0px'
+      e.target.parentElement.previousSibling.previousSibling.type = 'password'
+    }
+  })
+</script>
+</html>

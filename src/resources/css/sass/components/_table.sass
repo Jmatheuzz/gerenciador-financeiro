@@ -1,0 +1,49 @@
+@use '../_mixins'
+@use '../_variables'
+
+.tables 
+  display: flex
+  justify-content: space-around
+  width: 100%
+  .table
+    width: 100%
+    .title-table 
+        margin: 0 5rem
+    .title-table-report
+      margin: 0 20rem
+    .description-table
+      margin: 0 5rem
+    table
+      border-spacing: 0
+      width: 70%
+      margin: 0 5rem
+      td, th
+        border: 1px solid variables.$text-color-dark
+        text-align: center
+.filter
+  width: 50%
+  margin: 0 auto
+  form
+    display: flex
+    flex-direction: column
+    align-items: center
+  form 
+    div
+      width: 90%
+      display: flex
+      justify-content: space-between
+      fieldset
+        width: 35%
+    
+  form
+    button
+      width: 20%
+      height: 5vh
+      border: none
+      border-radius: 1rem
+      color: variables.$text-color-light
+      background: variables.$bg-color-dark
+
+    
+    
+    

@@ -1,0 +1,22 @@
+@use '../_mixins'
+@use '../_variables'
+
+.information
+  @include mixins.alignToEdge(space-around)
+  img 
+    width: 30%
+    margin-left: 15vw
+  .description
+    font-size: 1.5rem
+    margin: 0 5rem
+    font-family: 'Amatic SC', cursive
+
+.information-inverse
+  @include mixins.alignToEdgeInverse(space-around)
+  img 
+    width: 30%
+    margin-left: 25vw
+  .description
+    font-size: 1.5rem
+    margin: 0 5rem
+    font-family: 'Amatic SC', cursive

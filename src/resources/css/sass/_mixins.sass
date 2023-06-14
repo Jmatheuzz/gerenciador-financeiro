@@ -1,0 +1,24 @@
+@use 'variables'
+
+@mixin alignToEdge($type)
+  display: flex
+  justify-content: $type
+  align-items: center
+@mixin alignToEdgeInverse($type)
+  display: flex
+  flex-direction: row-reverse
+  justify-content: $type
+  align-items: center
+@mixin alignToColumn($type)
+  display: flex
+  flex-direction: column
+  justify-content: $type
+  align-items: center
+
+@mixin removeDecorationList()
+  list-style-type: none
+
+@mixin formatLink($color)
+  text-decoration: none
+  color: $color
+    

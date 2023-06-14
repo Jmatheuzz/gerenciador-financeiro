@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="http://localhost:5000/public/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <%- include('./components/header-logged.ejs') %>
+
+  <main>
+    <% if(expense.name) { %>
+      <form method="post" action="<%= `http://localhost:5000/expense/edit/${expense.id}` %>" class="form">
+        <div class="field">
+          <label>
+            Nome
+          </label>
+          <input type="text" name="name" value="<%= expense.name %>">
+        </div>
+  
+        <div class="field">
+          <label>
+            Valor
+          </label>
+          <input type="number" name="value" value="<%= expense.value %>">
+        </div>
+  
+        <div class="field">
+          <label>
+            Data final de pagamento
+          </label>
+          <input type="datetime-local" name="deadline"  value="<%= new Date(expense.deadline).toLocaleDateString().split('/').reverse().join('-') + 'T' + new Date(expense.deadline).toLocaleTimeString() %>">
+        </div>
+  
+        <div class="field">
+          <label>
+            Pago em
+          </label>
+          <input type="datetime-local" name="paidAt" value="<%= new Date(expense.paidAt).toLocaleDateString().split('/').reverse().join('-') + 'T' + new Date(expense.paidAt).toLocaleTimeString() %>">
+        </div>
+  
+        <button type="submit">
+          Salvar
+        </button>
+      </form>
+    <% } else { %>
+      <form method="post" action="http://localhost:5000/expense/create" class="form">
+        <div class="field">
+          <label>
+            Nome
+          </label>
+          <input type="text" name="name">
+        </div>
+  
+        <div class="field">
+          <label>
+            Valor
+          </label>
+          <input type="number" name="value">
+        </div>
+  
+        <div class="field">
+          <label>
+            Data final de pagamento
+          </label>
+          <input type="datetime-local" name="deadline">
+        </div>
+  
+        <div class="field">
+          <label>
+            Pago em
+          </label>
+          <input type="datetime-local" name="paidAt">
+        </div>
+  
+        <button type="submit">
+          Salvar
+        </button>
+      </form>
+
+    <% } %>
+  </main>
+
+
+</body>
+</html>

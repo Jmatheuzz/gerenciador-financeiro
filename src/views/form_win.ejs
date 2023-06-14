@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="http://localhost:5000/public/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <%- include('./components/header-logged.ejs') %>
+
+  <main>
+    <% if(win.name) { %>
+      <form method="post" action="<%= `http://localhost:5000/win/edit/${win.id}` %>" class="form">
+        <div class="field">
+          <label>
+            Nome
+          </label>
+          <input type="text" name="name" value="<%= win.name %>">
+        </div>
+  
+        <div class="field">
+          <label>
+            Valor
+          </label>
+          <input type="number" name="value" value="<%= win.value %>">
+        </div>
+  
+        <div class="field">
+          <label>
+            Recebido em
+          </label>
+          <input type="datetime-local" name="receivedAt"  value="<%= new Date(win.receivedAt).toLocaleDateString().split('/').reverse().join('-') + 'T' + new Date(win.receivedAt).toLocaleTimeString() %>">
+        </div>
+  
+        <button type="submit">
+          Salvar
+        </button>
+      </form>
+    <% } else { %>
+      <form method="post" action="http://localhost:5000/win/create" class="form">
+        <div class="field">
+          <label>
+            Nome
+          </label>
+          <input type="text" name="name">
+        </div>
+  
+        <div class="field">
+          <label>
+            Valor
+          </label>
+          <input type="number" name="value">
+        </div>
+  
+        <div class="field">
+          <label>
+            Recebido em
+          </label>
+          <input type="datetime-local" name="receivedAt">
+        </div>
+  
+        <button type="submit">
+          Salvar
+        </button>
+      </form>
+
+    <% } %>
+  </main>
+
+
+</body>
+</html>

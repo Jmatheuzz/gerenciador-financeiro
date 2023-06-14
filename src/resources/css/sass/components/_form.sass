@@ -1,0 +1,40 @@
+@use '../_mixins'
+@use '../_variables'
+
+.form
+  @include mixins.alignToColumn(center)
+  width: 70%
+  margin: 5vh auto
+  .field
+    @include mixins.alignToColumn(flex-start)
+    align-items: flex-start
+    width: 50%
+    position: relative
+    input
+      border: none
+      height: 5vh
+      width: 100%
+      background-color: variables.$text-color-dark-alpha
+    input:focus
+      box-shadow: 0
+      outline: 0
+      border-bottom: 1.5px solid variables.$text-color-dark
+    label
+      font-size: 1.3rem
+      margin-top: 2vh
+    .show-password
+      position: absolute
+      top: 63%
+      left: 90%
+
+  button 
+    width: 20%
+    height: 6vh
+    border: none
+    border-radius: 5px
+    background-color: variables.$primary-color
+    color: variables.$text-color-light
+    font-size: 1.2rem
+    margin-top: 2rem
+  button:hover
+    background-color: variables.$primary-color-dark

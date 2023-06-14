@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <%- include('./components/header-logged.ejs') %>
+
+  <main>
+    <div class="create">
+      <a class="button-new-expense" href="http://localhost:5000/expense/create">
+         Nova despesa
+        </a>
+      <a class="button-new-win" href="http://localhost:5000/win/create">
+         Novo ganho
+      </a>
+    </div>
+    <div class="tables">
+      <div class="table">
+        <h1 class="title-table">
+          Despesas de hoje (<%= new Date().toLocaleDateString() %>)
+        </h1>
+        <span class="description-table">
+          Um total de R$ <%= expenseTotal %>
+        </span>
+        <table>
+          <tr>
+            <th class="name">
+              Nome
+            </th>
+            <th>
+              Valor(R$)
+            </th>
+            <th>
+              Pagar até
+            </th>
+            <th>
+              Pago em
+            </th>
+          </tr>
+          <% expenses.forEach(expense => { %>
+            <% if ((new Date(expense.deadline).getTime() < new Date().getTime()) && expense.paidAt === null) { %>
+            <tr class="expense-out-time">
+              <td>
+                <%= expense.name %>
+              </td>
+              <td>
+                <%= expense.value %>
+              </td>
+              <td>
+                <%= new Date(expense.deadline).toLocaleTimeString() %>
+              </td>
+              <td>
+                <%= expense.paidAt ? new Date(expense.paidAt).toLocaleDateString() + ' ' + new Date(expense.paidAt).toLocaleTimeString() : '-' %>
+              </td>
+            </tr>
+            <% }else { %>
+
+            <tr>
+              <td>
+                <%= expense.name %>
+              </td>
+              <td>
+                <%= expense.value %>
+              </td>
+              <td>
+                <%= new Date(expense.deadline).toLocaleTimeString() %>
+              </td>
+              <td>
+                <%= expense.paidAt ? new Date(expense.paidAt).toLocaleDateString() + ' ' +  new Date(expense.paidAt).toLocaleTimeString() : '-' %>
+              </td>
+            </tr>
+            <% } %>
+          <% }) %>
+        </table>
+      </div>
+      
+      <div class="table">
+        <h1 class="title-table">
+          Ganhos de hoje (<%= new Date().toLocaleDateString() %>)
+        </h1>
+        <span class="description-table">
+          Um total de R$ <%= winTotal %>
+        </span>
+        <table>
+          <tr>
+            <th class="name">
+              Nome
+            </th>
+            <th>
+              Valor(R$)
+            </th>
+          </tr>
+          <% wins.forEach(win => { %>
+          <tr>
+            <td class="name">
+              <%= win.name %>
+            </td>
+            <td>
+              <%= win.value %>
+            </td>
+          </tr>
+
+          <% }) %>
+        </table>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
