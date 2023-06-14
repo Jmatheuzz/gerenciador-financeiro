@@ -24,7 +24,7 @@ class WinModel implements IWin {
       receivedAt: win.receivedAt || `${new Date(winSelect.receivedAt).getFullYear()}-${new Date(winSelect.receivedAt).getMonth()+1}-${new Date(winSelect.receivedAt).getDate()} ${new Date(winSelect.receivedAt).getHours()}:${new Date(winSelect.receivedAt).getMinutes()}:${new Date(winSelect.receivedAt).getSeconds()}`,
     }
 
-    const query = `UPDATE wins SET name = '${winData.name}', value = '${winData.value}', received_at = '${winData.receivedAt}', updated_at = '${dateUpdate}' WHERE id = ${win.id} RETURNING *`
+    const query = `UPDATE wins SET name = '${winData.name}', value = ${winData.value}, received_at = '${winData.receivedAt}', updated_at = '${dateUpdate}' WHERE id = ${win.id} RETURNING *`
     const result = await PostgreSQL.execute(query)
     return result.rows[0]
   }

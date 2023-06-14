@@ -1,6 +1,5 @@
 import { CreateExpense, IExpense, UpdateExpense, Expense } from './IExpense'
 import { PostgreSQL } from '@/config/connection'
-import { hash } from '@/utils/bcrypt'
 
 class ExpenseModel implements IExpense {
   public async create (expense: CreateExpense): Promise<Expense> {
@@ -25,7 +24,7 @@ class ExpenseModel implements IExpense {
       deadline: expense.deadline || `${new Date(expenseSelect.deadline).getFullYear()}-${new Date(expenseSelect.deadline).getMonth()+1}-${new Date(expenseSelect.deadline).getDate()} ${new Date(expenseSelect.deadline).getHours()}:${new Date(expenseSelect.deadline).getMinutes()}:${new Date(expenseSelect.deadline).getSeconds()}`,
     }
 
-    const query = `UPDATE expenses SET name = '${expenseData.name}', value = '${expenseData.value}', deadline = '${expenseData.deadline}', paid_at = '${expense.paidAt}', updated_at = '${dateUpdate}' WHERE id = ${expense.id} RETURNING *`
+    const query = `UPDATE expenses SET name = '${expenseData.name}', value = ${expenseData.value}, deadline = '${expenseData.deadline}', paid_at = '${expense.paidAt}', updated_at = '${dateUpdate}' WHERE id = ${expense.id} RETURNING *`
     const result = await PostgreSQL.execute(query)
     return result.rows[0]
   }

@@ -10,9 +10,10 @@ class WinController {
   }
 
   public async update (req: Request, res: Response): Promise<void> {
-    req.body.id = req.params.id
+    req.body.id = parseInt(req.params.id)
     await winService.update(req.body, req.user!.id)
-    res.redirect('report')
+
+    res.redirect('/report')
   }
 
   public async get (req: Request, res: Response): Promise<void> {

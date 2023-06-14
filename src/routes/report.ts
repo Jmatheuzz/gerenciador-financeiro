@@ -28,6 +28,7 @@ router.get('/', authenticateMiddleware, async (req: Request, res: Response) => {
   const whereExpense = `(deadline BETWEEN '${req.query.expenseStart || dateStartExpenseUCT}' AND '${req.query.expenseFinished || dateFinishedExpenseUTC}') ORDER BY deadline ASC`
   const whereWin = `(received_at BETWEEN '${req.query.winStart || dateStartWinUCT}' AND '${req.query.winFinished || dateFinishedWinUTC}') ORDER BY received_at DESC`
 
+
   const expenses = await expenseModel.getByUser(req.user!.id, whereExpense)
   const wins = await winModel.getByUser(req.user!.id, whereWin)
 

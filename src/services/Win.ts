@@ -1,8 +1,8 @@
 import { winModel } from '@/models/win/Win'
-import { Win } from '@/models/win/IWin'
+import { CreateWin, UpdateWin, Win } from '@/models/win/IWin'
 
 class WinService {
-  public async insert (win: Win, userId: number): Promise<void> {
+  public async insert (win: CreateWin, userId: number): Promise<void> {
     const winForm = win
     const receivedAt = `${new Date(winForm.receivedAt).getFullYear()}-${new Date(winForm.receivedAt).getMonth() +1}-${new Date(winForm.receivedAt).getDate()} ${new Date(winForm.receivedAt).getHours()}:${new Date(winForm.receivedAt).getMinutes()}:${new Date(winForm.receivedAt).getSeconds()}`
 
@@ -13,13 +13,12 @@ class WinService {
     
   }
 
-  public async update (win: Win, userId: number): Promise<void> {
+  public async update (win: UpdateWin, userId: number): Promise<void> {
     const winForm = win
     const receivedAt = `${new Date(winForm.receivedAt).getFullYear()}-${new Date(winForm.receivedAt).getMonth() +1}-${new Date(winForm.receivedAt).getDate()} ${new Date(winForm.receivedAt).getHours()}:${new Date(winForm.receivedAt).getMinutes()}:${new Date(winForm.receivedAt).getSeconds()}`
 
     winForm.receivedAt = receivedAt
     winForm.value = parseInt(String(winForm.value))
-    winForm.userId = userId
     await winModel.update(winForm)
   }
 
